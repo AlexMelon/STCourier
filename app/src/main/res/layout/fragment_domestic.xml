@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".domestic.pres.fragment.DomesticFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.alex.stcourier.domestic.pres.viewmodel.DomesticViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <!-- Pincode Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiPincode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Pincode"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPincode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="6"
+                android:text="@={viewModel.pincode}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- State Dropdown -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiState"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Select State"
+            app:layout_constraintTop_toBottomOf="@id/tiPincode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteState"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:paddingStart="16dp"
+                android:inputType="text"
+                android:text="@={viewModel.selectedState}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Submit Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tiState"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp"
+            android:onClick="@{() -> viewModel.onSubmit()}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
